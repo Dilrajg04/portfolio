@@ -129,16 +129,18 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen px-6 lg:px-16 pt-24 pb-16 flex flex-col">
 
-      {/* Mobile headshot */}
+      {/* Mobile headshot — full width ghost, blended */}
       <motion.div
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease, delay: 0.1 }}
-        className="lg:hidden flex justify-center mb-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.35 }}
+        transition={{ duration: 0.9, ease, delay: 0.1 }}
+        className="lg:hidden relative w-full h-[340px] mb-4 overflow-hidden rounded-2xl"
       >
-        <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-zinc-100 shadow-sm">
-          <Image src="/headshot.png" alt="Dilraj Grewal" fill priority className="object-cover object-top" sizes="144px" />
-        </div>
+        <Image src="/headshot.png" alt="Dilraj Grewal" fill priority className="object-cover object-top" sizes="100vw" />
+        <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-white via-white/60 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-1/5 bg-gradient-to-b from-white to-transparent" />
       </motion.div>
 
       {/* Desktop headshot */}
