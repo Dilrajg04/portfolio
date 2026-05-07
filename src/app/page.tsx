@@ -8,6 +8,7 @@ import Marketing from "@/components/Marketing";
 import Stats from "@/components/Stats";
 import Artwork from "@/components/Artwork";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Stats />
       <Artwork />
       <Footer />
+      <ScrollToTop />
     </>
   );
 }
