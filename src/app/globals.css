@@ -29,6 +29,11 @@ body {
   overflow-x: hidden;
 }
 
+/* ── Custom cursor — hide default on mouse devices ── */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+}
+
 /* ── Marquee ─────────────────────────────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
