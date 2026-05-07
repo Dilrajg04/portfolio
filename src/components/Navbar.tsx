@@ -99,13 +99,12 @@ export default function Navbar() {
           </AnimatePresence>
         </div>
 
-        {/* Now Playing pill */}
+        {/* Now Playing — desktop pill */}
         <button
           onClick={toggleAudio}
-          className="flex items-center gap-3 border border-zinc-200 hover:border-zinc-400 rounded-full pl-2 pr-4 py-2 transition-colors duration-200"
+          className="hidden lg:flex items-center gap-3 border border-zinc-200 hover:border-zinc-400 rounded-full pl-2 pr-4 py-2 transition-colors duration-200"
           aria-label={playing ? "Pause" : "Play"}
         >
-          {/* Play/pause icon */}
           <div className="w-8 h-8 rounded-full bg-[#0a0a0a] flex items-center justify-center shrink-0">
             <AnimatePresence mode="wait" initial={false}>
               {playing ? (
@@ -120,21 +119,15 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </div>
-
-          {/* Text */}
           <div className="text-left">
             <p className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase leading-none mb-1">
               {playing ? "Now Playing" : "Currently Into"}
             </p>
             <p className="text-sm font-display font-semibold text-[#0a0a0a] leading-none">{SONG} · <span className="font-normal text-zinc-400">{ARTIST}</span></p>
           </div>
-
-          {/* Waveform */}
           <div className="flex items-end gap-[2px] h-4 ml-1">
             {[0.4, 0.9, 0.6, 1, 0.5].map((h, i) => (
-              <motion.span
-                key={i}
-                className="w-[2px] rounded-full bg-zinc-300"
+              <motion.span key={i} className="w-[2px] rounded-full bg-zinc-300"
                 animate={playing ? { scaleY: [h, 1, h * 0.4, 0.9, h] } : { scaleY: 0.3 }}
                 transition={playing ? { duration: 0.7 + i * 0.1, repeat: Infinity, ease: "easeInOut", delay: i * 0.1 } : { duration: 0.3 }}
                 style={{ height: "100%", originY: 1 }}
@@ -142,6 +135,42 @@ export default function Navbar() {
             ))}
           </div>
         </button>
+
+        {/* Now Playing — mobile compact */}
+        <div className="lg:hidden relative">
+          <button
+            onClick={toggleAudio}
+            className="w-8 h-8 rounded-full bg-[#0a0a0a] flex items-center justify-center"
+            aria-label={playing ? "Pause" : "Play"}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {playing ? (
+                <motion.svg key="pause" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }} transition={{ duration: 0.1 }} width="10" height="10" viewBox="0 0 10 10" fill="white">
+                  <rect x="1.5" y="1.5" width="3" height="7" rx="0.75"/>
+                  <rect x="5.5" y="1.5" width="3" height="7" rx="0.75"/>
+                </motion.svg>
+              ) : (
+                <motion.svg key="play" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }} transition={{ duration: 0.1 }} width="10" height="10" viewBox="0 0 10 10" fill="white">
+                  <path d="M2.5 1.5l6 3.5-6 3.5V1.5z"/>
+                </motion.svg>
+              )}
+            </AnimatePresence>
+          </button>
+          <AnimatePresence>
+            {playing && (
+              <motion.div
+                initial={{ opacity: 0, y: 4, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 4, scale: 0.95 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap bg-white border border-zinc-200 rounded-xl px-3 py-1.5 shadow-sm"
+              >
+                <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest leading-none mb-0.5">Now Playing</p>
+                <p className="text-xs font-display font-semibold text-[#0a0a0a] leading-none">{SONG} · <span className="font-normal text-zinc-400">{ARTIST}</span></p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
       </div>
 
