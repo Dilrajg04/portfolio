@@ -172,7 +172,7 @@ export default function Hero() {
             View My Work <span aria-hidden>→</span>
           </a>
           <a href="https://larper.co" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 border border-zinc-200 text-[#0a0a0a] font-display font-semibold text-sm px-6 py-3 rounded-full hover:border-zinc-400 transition-colors duration-200">
-            larper.co <span aria-hidden className="text-zinc-400">↗</span>
+            larper.co <span aria-hidden className="text-zinc-400 hidden sm:inline">↗</span>
           </a>
         </div>
         <p className="text-sm text-zinc-500 max-w-[280px] leading-relaxed sm:text-right">
