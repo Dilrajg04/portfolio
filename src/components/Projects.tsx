@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -27,7 +28,17 @@ function TiltCard({ children, className, innerClassName, delay = 0, href }: {
   }
   function onLeave() { rawX.set(0); rawY.set(0); scale.set(1); }
 
-  const inner = (
+  const isMobile = useIsMobile();
+
+  const inner = isMobile ? (
+    <motion.div
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      className={`h-full rounded-2xl p-8 flex flex-col gap-4 ${href ? "cursor-pointer" : "cursor-default"} ${innerClassName ?? "border border-zinc-200 bg-white"}`}
+    >
+      {children}
+    </motion.div>
+  ) : (
     <motion.div
       style={{ rotateX, rotateY, scale, transformPerspective: 900 }}
       onMouseMove={onMove}
@@ -52,6 +63,7 @@ function TiltCard({ children, className, innerClassName, delay = 0, href }: {
 }
 
 export default function Projects() {
+  const isMobile = useIsMobile();
   return (
     <section id="projects" className="px-6 lg:px-16 py-28 bg-zinc-50/50">
       {/* Label */}
@@ -89,7 +101,8 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease }}
-          whileHover={{ scale: 1.01 }}
+          whileHover={!isMobile ? { scale: 1.01 } : undefined}
+          whileTap={isMobile ? { scale: 0.97 } : undefined}
           className="group lg:col-span-2 rounded-3xl overflow-hidden bg-[#0a0a0a] text-white relative flex flex-col justify-between p-10 lg:p-12 min-h-[320px]"
         >
           <motion.div
