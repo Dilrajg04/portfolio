@@ -105,13 +105,6 @@ export default function Projects() {
           whileTap={isMobile ? { scale: 0.97 } : undefined}
           className="group lg:col-span-2 rounded-3xl overflow-hidden bg-[#0a0a0a] text-white relative flex flex-col justify-between p-10 lg:p-12 min-h-[320px]"
         >
-          <motion.div
-            className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
-            initial={{ opacity: 0.1 }}
-            whileHover={{ opacity: 0.2, scale: 1.15 }}
-            transition={{ duration: 0.5 }}
-            style={{ background: "radial-gradient(circle, #10b981, transparent 70%)", transform: "translate(30%, -30%)" }}
-          />
           <div className="relative z-10">
             <div className="flex items-start justify-between gap-4 mb-6">
               <span className="text-xs font-mono tracking-widest text-emerald-400 uppercase">Featured Project</span>
@@ -239,10 +232,6 @@ export default function Projects() {
 
         {/* Mustang App — bottom-right corner, 1 col, dark */}
         <TiltCard delay={0.26} innerClassName="bg-[#0a0a0a] text-white relative overflow-hidden">
-          <div
-            className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full pointer-events-none opacity-10"
-            style={{ background: "radial-gradient(circle, #818cf8, transparent 70%)", transform: "translate(30%, -30%)" }}
-          />
           <div className="relative z-10 flex items-start justify-between gap-3">
             <span className="text-xs font-mono tracking-widest text-indigo-400 uppercase">Product</span>
             <span className="text-xs font-mono bg-white/10 text-white/50 rounded-full px-2.5 py-1 shrink-0">Case Study</span>
