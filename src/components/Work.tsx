@@ -117,7 +117,7 @@ function DesktopCard({ item, i }: { item: typeof work[0]; i: number }) {
         onMouseMove={onMove}
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
-        className="relative rounded-2xl bg-[#0a0a0a] p-8 flex flex-col gap-5 overflow-hidden cursor-none"
+        className="relative rounded-2xl bg-[#0a0a0a] p-8 flex flex-col gap-5 overflow-hidden"
       >
         {ripples.map(ripple => (
           <motion.div
