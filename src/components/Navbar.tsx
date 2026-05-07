@@ -3,35 +3,15 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { useAudio } from "@/context/AudioContext";
 
 const SONG = "The Plan";
 const ARTIST = "Travis Scott";
-const SRC = "/The Plan - Travis Scott.mp3";
 
 export default function Navbar() {
+  const { playing, toggle: toggleAudio } = useAudio();
   const [open, setOpen] = useState(false);
   const heartRef = useRef<HTMLDivElement>(null);
-
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const audio = new Audio(SRC);
-    audio.loop = true;
-    audioRef.current = audio;
-    audio.addEventListener("timeupdate", () => {
-      if (audio.duration) setProgress(audio.currentTime / audio.duration);
-    });
-    return () => { audio.pause(); audio.src = ""; };
-  }, []);
-
-  function toggleAudio() {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (playing) { audio.pause(); setPlaying(false); }
-    else { audio.play(); setPlaying(true); }
-  }
 
   useEffect(() => {
     if (!open) return;

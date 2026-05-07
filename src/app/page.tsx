@@ -9,10 +9,11 @@ import Stats from "@/components/Stats";
 import Artwork from "@/components/Artwork";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import { AudioProvider } from "@/context/AudioContext";
 
 export default function Home() {
   return (
-    <>
+    <AudioProvider>
       <Navbar />
       <Hero />
       <MarqueeBar />
@@ -24,6 +25,6 @@ export default function Home() {
       <Artwork />
       <Footer />
       <ScrollToTop />
-    </>
+    </AudioProvider>
   );
 }

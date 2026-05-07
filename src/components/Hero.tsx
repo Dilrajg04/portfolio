@@ -1,9 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useAudio } from "@/context/AudioContext";
+
+const SONG = "The Plan";
+const ARTIST = "Travis Scott";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -41,6 +45,61 @@ function decode(setChars: (fn: (prev: string[]) => string[]) => void, delay = 0)
       setChars(prev => prev.map((c, j) => j === i ? originalChar : c));
     }, delay + i * 65);
   });
+}
+
+/* ── Mobile Now Playing ── */
+function MobilePlayer() {
+  const { playing, toggle } = useAudio();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.8, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="flex items-center gap-3 mt-5"
+    >
+      <button
+        onClick={toggle}
+        className="w-9 h-9 rounded-full bg-[#0a0a0a] flex items-center justify-center shrink-0"
+        aria-label={playing ? "Pause" : "Play"}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {playing ? (
+            <motion.svg key="pause" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }} transition={{ duration: 0.1 }} width="11" height="11" viewBox="0 0 10 10" fill="white">
+              <rect x="1.5" y="1.5" width="3" height="7" rx="0.75"/>
+              <rect x="5.5" y="1.5" width="3" height="7" rx="0.75"/>
+            </motion.svg>
+          ) : (
+            <motion.svg key="play" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }} transition={{ duration: 0.1 }} width="11" height="11" viewBox="0 0 10 10" fill="white">
+              <path d="M2.5 1.5l6 3.5-6 3.5V1.5z"/>
+            </motion.svg>
+          )}
+        </AnimatePresence>
+      </button>
+
+      <div>
+        <p className="text-[9px] font-mono tracking-widest text-zinc-400 uppercase leading-none mb-0.5">
+          {playing ? "Now Playing" : "Currently Into"}
+        </p>
+        <p className="text-xs font-display font-semibold text-[#0a0a0a] leading-none">
+          {SONG} · <span className="font-normal text-zinc-400">{ARTIST}</span>
+        </p>
+      </div>
+
+      {/* Visualizer bars */}
+      <div className="flex items-end gap-[3px] h-5 ml-1">
+        {[0.4, 0.9, 0.6, 1, 0.5, 0.75, 0.3].map((h, i) => (
+          <motion.span
+            key={i}
+            className="w-[2.5px] rounded-full bg-zinc-300"
+            animate={playing ? { scaleY: [h, 1, h * 0.4, 0.9, h] } : { scaleY: 0.25 }}
+            transition={playing ? { duration: 0.7 + i * 0.1, repeat: Infinity, ease: "easeInOut", delay: i * 0.08 } : { duration: 0.3 }}
+            style={{ height: "100%", originY: 1 }}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
 }
 
 /* ── ScrambleHeadline ── */
@@ -118,16 +177,7 @@ function ScrambleHeadline() {
           </motion.span>
         ))}
       </h1>
-      {isMobile && (
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 0.5 }}
-          className="text-[10px] font-mono text-zinc-300 tracking-widest uppercase mt-3"
-        >
-          tap to scramble
-        </motion.p>
-      )}
+      {isMobile && <MobilePlayer />}
     </motion.div>
   );
 }
