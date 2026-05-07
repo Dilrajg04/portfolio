@@ -16,6 +16,11 @@ const lineVariant = {
   }),
 };
 
+const digitColors = [
+  "#f43f5e", "#f97316", "#eab308", "#22c55e", "#06b6d4",
+  "#3b82f6", "#8b5cf6", "#ec4899", "#14b8a6", "#f59e0b",
+];
+
 const LINE1 = "Dilraj";
 const LINE2 = "Grewal";
 const LINES = [LINE1, LINE2];
@@ -99,8 +104,11 @@ function ScrambleHeadline() {
                   <span
                     key={idx}
                     ref={el => { refs.current[idx] = el; }}
-                    style={{ display: char === " " ? "inline" : "inline-block" }}
-                    className={scrambled ? "font-mono text-zinc-400" : ""}
+                    style={{
+                      display: char === " " ? "inline" : "inline-block",
+                      color: scrambled ? digitColors[parseInt(chars[idx])] : undefined,
+                    }}
+                    className={scrambled ? "font-mono" : ""}
                   >
                     {chars[idx]}
                   </span>
