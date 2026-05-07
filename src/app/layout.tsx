@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -33,7 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${syne.variable} ${dm.variable}`}>
       <body className="bg-white text-[#0a0a0a] min-h-screen">
-        <CustomCursor />
         {children}
       </body>
     </html>
