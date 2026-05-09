@@ -45,6 +45,89 @@ body {
   animation-play-state: paused;
 }
 
+/* ── Visualizer mode ─────────────────────────────── */
+html.visualizer-mode body { background: transparent !important; color: #fff !important; }
+/* body carries bg-white class — explicitly keep it transparent at higher specificity */
+html.visualizer-mode body.bg-white { background-color: transparent !important; backdrop-filter: none !important; }
+
+/* All sections transparent — canvas shows through */
+html.visualizer-mode #about,
+html.visualizer-mode #work,
+html.visualizer-mode #projects,
+html.visualizer-mode #marketing,
+html.visualizer-mode #stats,
+html.visualizer-mode #artwork  { background-color: transparent !important; }
+
+/* Navbar stays opaque */
+html.visualizer-mode .bg-white\/80 { background-color: rgba(6,6,6,0.92) !important; backdrop-filter: blur(12px); }
+
+/* Dark card backgrounds → semi-transparent */
+html.visualizer-mode .bg-\[\#0a0a0a\] { background-color: rgba(10,10,10,0.45) !important; backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-zinc-900     { background-color: rgba(15,15,15,0.45) !important; backdrop-filter: blur(4px); }
+
+/* White / light card surfaces → semi-transparent frosted dark */
+html.visualizer-mode .bg-white        { background-color: rgba(20,20,20,0.45) !important; backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-white\/10    { background-color: rgba(255,255,255,0.05) !important; }
+html.visualizer-mode [class*="bg-zinc-50"]  { background-color: rgba(18,18,18,0.45) !important; backdrop-filter: blur(4px); }
+html.visualizer-mode [class*="bg-zinc-100"] { background-color: rgba(22,22,22,0.45) !important; backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-zinc-200           { background-color: rgba(30,30,30,0.45) !important; }
+
+/* Stats coloured cards → semi-transparent dark tint */
+html.visualizer-mode .bg-rose-50     { background-color: rgba(20,6,6,0.5) !important;   backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-rose-100    { background-color: rgba(26,8,8,0.5) !important;   backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-violet-50   { background-color: rgba(14,6,22,0.5) !important;  backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-violet-100  { background-color: rgba(18,8,28,0.5) !important;  backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-emerald-50  { background-color: rgba(6,18,12,0.5) !important;  backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-emerald-100 { background-color: rgba(8,22,16,0.5) !important;  backdrop-filter: blur(4px); }
+html.visualizer-mode .bg-amber-50    { background-color: rgba(18,14,4,0.5) !important;  backdrop-filter: blur(4px); }
+
+/* Borders */
+html.visualizer-mode .border-zinc-100         { border-color: #2a2a2a !important; }
+html.visualizer-mode .border-zinc-200         { border-color: #3a3a3a !important; }
+html.visualizer-mode .border-rose-100         { border-color: #3f0f0f !important; }
+html.visualizer-mode .border-violet-100       { border-color: #1e1030 !important; }
+html.visualizer-mode .border-emerald-100      { border-color: #0f2e20 !important; }
+html.visualizer-mode .border-amber-200        { border-color: #2a1e00 !important; }
+html.visualizer-mode .divide-zinc-100 > * + * { border-color: #2a2a2a !important; }
+html.visualizer-mode .border-t                { border-color: #2a2a2a !important; }
+
+/* Marketing gradient */
+html.visualizer-mode [class*="from-zinc-100"] { --tw-gradient-from: rgba(28,28,28,0.6) var(--tw-gradient-from-position) !important; }
+
+/* Text */
+html.visualizer-mode .text-\[\#0a0a0a\]              { color: #fff !important; }
+html.visualizer-mode .hover\:text-\[\#0a0a0a\]:hover { color: #fff !important; }
+html.visualizer-mode .text-zinc-500                   { color: #a1a1aa !important; }
+html.visualizer-mode .text-zinc-400                   { color: #71717a !important; }
+html.visualizer-mode .text-zinc-700                   { color: #d4d4d8 !important; }
+
+/* Display font: subtle white glow */
+html.visualizer-mode .font-display { text-shadow: 0 0 40px rgba(255,255,255,0.1); }
+
+/* Shadows */
+html.visualizer-mode .shadow-zinc-100 { --tw-shadow-color: #000 !important; }
+html.visualizer-mode .shadow-lg       { --tw-shadow: 0 10px 15px -3px rgba(0,0,0,0.7), 0 4px 6px -4px rgba(0,0,0,0.5) !important; }
+
+/* Interactive hovers → grey */
+html.visualizer-mode .hover\:bg-zinc-800:hover     { background-color: #3f3f46 !important; }
+html.visualizer-mode .hover\:border-zinc-400:hover { border-color: #52525b !important; }
+
+/* Mobile: skip backdrop-filter for performance */
+@media (max-width: 768px) {
+  html.visualizer-mode .bg-\[\#0a0a0a\],
+  html.visualizer-mode .bg-zinc-900,
+  html.visualizer-mode .bg-white,
+  html.visualizer-mode [class*="bg-zinc-50"],
+  html.visualizer-mode [class*="bg-zinc-100"],
+  html.visualizer-mode .bg-rose-50,
+  html.visualizer-mode .bg-rose-100,
+  html.visualizer-mode .bg-violet-50,
+  html.visualizer-mode .bg-violet-100,
+  html.visualizer-mode .bg-emerald-50,
+  html.visualizer-mode .bg-emerald-100,
+  html.visualizer-mode .bg-amber-50 { backdrop-filter: none !important; }
+}
+
 /* ── Fade up (CSS-only fallback) ─────────────────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }

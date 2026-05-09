@@ -9,6 +9,8 @@ import Stats from "@/components/Stats";
 import Artwork from "@/components/Artwork";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import VisualizerPrompt from "@/components/VisualizerPrompt";
+import VisualizerCanvas from "@/components/VisualizerCanvas";
 import { AudioProvider } from "@/context/AudioContext";
 
 export default function Home() {
@@ -25,6 +27,8 @@ export default function Home() {
       <Artwork />
       <Footer />
       <ScrollToTop />
+      <VisualizerPrompt />
+      <VisualizerCanvas />
     </AudioProvider>
   );
 }
