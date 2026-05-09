@@ -150,8 +150,8 @@ function ScrambleHeadline() {
   return (
     <motion.div initial="hidden" animate="show" onClick={onTap} className={isMobile ? "cursor-pointer select-none" : ""}>
       <h1
-        className="font-display font-extrabold leading-[0.9] tracking-[-0.03em] text-[#0a0a0a]"
-        style={{ fontSize: isMobile ? "clamp(2.5rem, 14vw, 4.5rem)" : "clamp(4rem, 16vw, 16rem)" }}
+        className="font-display font-extrabold leading-[0.9] tracking-[-0.03em] text-[#0a0a0a] uppercase"
+        style={{ fontSize: isMobile ? "clamp(2rem, 17vw, 5rem)" : "clamp(3.5rem, 12vw, 12rem)" }}
         aria-label={LINES.join(" ")}
       >
         {lineMap.map((line, li) => (
