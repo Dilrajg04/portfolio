@@ -151,7 +151,7 @@ function ScrambleHeadline() {
     <motion.div initial="hidden" animate="show" onClick={onTap} className={isMobile ? "cursor-pointer select-none" : ""}>
       <h1
         className="font-display font-extrabold leading-[0.9] tracking-[-0.03em] text-[#0a0a0a] uppercase"
-        style={{ fontSize: isMobile ? "clamp(2rem, 17vw, 5rem)" : "clamp(3.5rem, 12vw, 12rem)" }}
+        style={{ fontSize: isMobile ? "clamp(1.8rem, 11vw, 3.2rem)" : "clamp(3.5rem, 12vw, 12rem)" }}
         aria-label={LINES.join(" ")}
       >
         {lineMap.map((line, li) => (
